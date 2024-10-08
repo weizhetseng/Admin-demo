@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import ModalView from '@/components/ModalView.vue'
 import ModalAdd from '@/components/ModalAdd.vue'
 import ModalEdit from '@/components/ModalEdit.vue'
+import type { AdminList } from '../modals/index'
 
 const isTable = ref(-1)
 function toggleTable(num: number) {
@@ -15,8 +16,11 @@ function toggleTable(num: number) {
 }
 
 const isView = ref(false)
-function toggleView() {
+const isViewContent = ref<AdminList | null>(null)
+
+function toggleView(item: AdminList) {
   isView.value = !isView.value
+  isViewContent.value = item
 }
 
 const isAdd = ref(false)
@@ -25,15 +29,16 @@ function toggleAdd() {
 }
 
 const isEdit = ref(false)
-function toggleEdit() {
+function toggleEdit(item: AdminList) {
   isEdit.value = !isEdit.value
+  isViewContent.value = item
 }
 </script>
 
 <template>
   <div>
-    <div class="mb-10 flex items-center justify-between">
-      <div class="flex gap-12">
+    <div class="mb-10 flex items-start sm:items-center justify-between">
+      <div class="flex flex-col gap-5 sm:flex-row sm:gap-12">
         <h2 class="text-2xl font-bold">Admin</h2>
         <button type="button" class="flex items-center gap-2" @click="toggleAdd">
           <VIcon icon="ic:sharp-plus" class="text-2xl text-green1" />
@@ -57,15 +62,15 @@ function toggleEdit() {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) of adminList" :key="item.name">
-          <td class="border-b border-gray3 py-4">#{{ index + 1 }}</td>
+        <tr v-for="item of adminList" :key="item.name">
+          <td class="border-b border-gray3 py-4">#{{ item.id }}</td>
           <td class="border-b border-gray3 py-4">{{ item.name }}</td>
           <td class="border-b border-gray3 py-4">{{ item.email }}</td>
           <td class="border-b border-gray3 py-4">{{ item.verified ? 'Yes' : 'No' }}</td>
           <td class="border-b border-gray3 py-4">{{ item.activated ? 'Yes' : 'No' }}</td>
           <td class="w-20 border-b border-gray3 py-4">
             <div class="flex items-center gap-6">
-              <VIcon icon="mdi:eye" class="cursor-pointer text-2xl" @click="toggleView" />
+              <VIcon icon="mdi:eye" class="cursor-pointer text-2xl" @click="toggleView(item)" />
               <VIcon icon="ic:baseline-edit" class="cursor-pointer text-2xl" @click="toggleEdit" />
             </div>
           </td>
@@ -85,7 +90,7 @@ function toggleEdit() {
             <div class="w-full flex-1 border-b border-gray3 py-4">{{ item.name }}</div>
             <div class="w-20 border-b border-gray3 py-4 sm:w-30">
               <div class="flex items-center gap-2 sm:gap-6">
-                <VIcon icon="mdi:eye" class="text-2xl" @click="toggleView" />
+                <VIcon icon="mdi:eye" class="text-2xl" @click="toggleView(item)" />
                 <VIcon icon="ic:baseline-edit" class="text-2xl" @click="toggleEdit" />
                 <VIcon icon="ic:sharp-plus" class="text-2xl" @click="toggleTable(index)" />
               </div>
@@ -143,8 +148,8 @@ function toggleEdit() {
         </li>
       </ul>
     </div>
-    <ModalView :is-view="isView" @toggle-view="toggleView" />
+    <ModalView :is-view="isView" @toggle-view="toggleView" :select-item="isViewContent" />
     <ModalAdd :is-add="isAdd" @toggle-add="toggleAdd" />
-    <ModalEdit :is-edit="isEdit" @toggle-edit="toggleEdit" />
+    <ModalEdit :is-edit="isEdit" @toggle-edit="toggleEdit" :select-item="isViewContent" />
   </div>
 </template>

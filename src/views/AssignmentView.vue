@@ -2,8 +2,8 @@
 
 <template>
   <div>
-    <div class="mb-10 flex items-center justify-between">
-      <div class="flex gap-12">
+    <div class="mb-10 flex items-start justify-between sm:items-center">
+      <div class="flex flex-col gap-5 sm:flex-row sm:gap-12">
         <h2 class="text-2xl font-bold">Assignment</h2>
         <select
           name=""
@@ -103,7 +103,7 @@
                   <span class="text-xs text-gray2">10:38 AM (4 hours ago)</span>
                 </div>
               </div>
-              <div class="mb-4 ml-12 border-b border-gray3 pb-4">
+              <div class="mb-4 border-b border-gray3 pb-4 min-[576px]:ml-12">
                 <p class="mb-4">
                   Hi Teacher, the attached file is my homework of chapter 2. And here comes a
                   question: Why in the following code the height of the
@@ -124,7 +124,9 @@
             </div>
 
             <div>
-              <div class="mb-4 flex items-center justify-between gap-5">
+              <div
+                class="mb-4 flex flex-col justify-between gap-5 min-[576px]:flex-row min-[576px]:items-center"
+              >
                 <div class="flex items-center gap-2">
                   <img
                     src="@/assets/images/user3.jpeg"
@@ -136,12 +138,12 @@
                     <span class="text-xs text-gray2">13:24 AM (1 hours ago)</span>
                   </div>
                 </div>
-                <div class="flex items-center gap-6">
+                <div class="flex items-center gap-6 self-end min-[576px]:self-auto">
                   <VIcon icon="mdi:star-outline" class="text-2xl" />
                   <VIcon icon="ic:baseline-edit" class="text-2xl" />
                 </div>
               </div>
-              <div class="mb-4 ml-12 border-b border-gray3 pb-4">
+              <div class="mb-4 border-b border-gray3 pb-4 min-[576px]:ml-12">
                 <p class="mb-4">
                   Hi Teacher, the attached file is my homework of chapter 2. And here comes a
                   question: Why in the following code the height of the
@@ -162,12 +164,12 @@
             </div>
           </div>
         </div>
-        <div class="flex justify-between">
+        <div class="flex flex-col items-end justify-between gap-5 sm:flex-row sm:items-center">
           <div class="flex items-center gap-6">
             <VIcon icon="lsicon:left-filled" class="text-2xl" />
             <VIcon icon="lsicon:right-filled" class="text-2xl" />
           </div>
-          <div class="flex items-center gap-4">
+          <div class="flex flex-wrap items-center justify-end gap-4">
             <button
               type="button"
               class="rounded-sm border border-green1 px-8 py-2 font-bold text-green1"

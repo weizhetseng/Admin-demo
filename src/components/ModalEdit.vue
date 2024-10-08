@@ -1,6 +1,9 @@
 <script lang="ts" setup>
+import type { AdminList } from '../modals/index'
+
 defineProps<{
   isEdit: boolean
+  selectItem: AdminList | null
 }>()
 </script>
 
@@ -8,7 +11,7 @@ defineProps<{
   <div
     class="fixed left-0 top-0 z-50 h-full w-full overflow-auto bg-black-0.2 py-10"
     v-show="isEdit"
-    @click="$emit('toggleEdit')"
+    @click="$emit('toggleEdit', null)"
   >
     <div class="max-w-120 mx-auto w-11/12 bg-white p-8" @click.stop>
       <div class="mb-8 flex justify-between">
@@ -16,7 +19,7 @@ defineProps<{
         <VIcon
           icon="ic:baseline-close"
           class="h-6 w-6 cursor-pointer"
-          @click="$emit('toggleEdit')"
+          @click="$emit('toggleEdit', null)"
         />
       </div>
       <form action="">

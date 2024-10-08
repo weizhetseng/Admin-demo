@@ -9,14 +9,29 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/question',
+      name: 'question',
+      component: () => import('../views/QuestionView.vue')
+    },
+    {
       path: '/assignment',
       name: 'assignment',
       component: () => import('../views/AssignmentView.vue')
     },
     {
+      path: '/course',
+      name: 'course',
+      component: () => import('../views/CourseView.vue')
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: () => import('../views/AdminView.vue')
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('../views/SettingsView.vue')
     }
   ],
   scrollBehavior(to, from, savePosition) {
@@ -33,8 +48,6 @@ const router = createRouter({
   }
 })
 
-router.beforeEach((to, from) => {
-  console.log(to.path, from.path)
-})
+router.beforeEach((to, from) => {})
 
 export default router
